@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>live Coin Price</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h4, p {
+    display: inline;
+}​
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.style
+{
+    padding-right:150px;
+}
+.background_marquee{
+    background-color: #ff1212;
+    color:white;
+    padding:10px;
+}
+
+    </style>
+</head>
+<body>
+
+    <br>
+    <div class="background_marquee">
+        <marquee>
+            <h4>
+                <p class="style"> BTC $<span id="bitcoin"></span> (<span id="bitcoin_percent"></span>%)</p>
+                <p class="style"> ETH $<span id="ethereum"></span> (<span id="ethereum_percent"></span>%)</p>
+                <p class="style"> LTC $<span id="litecoin"></span> (<span id="litecoin_percent"></span>%)</p>
+                <p class="style"> DOGE $<span id="dogecoin"></span> (<span id="dogecoin_percent"></span>%)</p>
+                <p class="style"> LINK $<span id="chainlink"></span> (<span id="chainlink_percent"></span>%)</p>
+            </h4>
+        </marquee>
+    </div>
+   
+    <script src="ap.js"></script>
+    <script>
+        var btc = document.getElementById("bitcoin");
+        var eth = document.getElementById("ethereum");
+        var ltc = document.getElementById("litecoin");
+        var doge = document.getElementById("dogecoin");
+        var chainlink = document.getElementById("chainlink");
+        var btc_percent = document.getElementById("bitcoin_percent");
+        var eth_percent = document.getElementById("ethereum_percent");
+        var ltc_percent = document.getElementById("litecoin_percent");
+        var doge_percent = document.getElementById("dogecoin_percent");
+        var chainlink_percent = document.getElementById("chainlink_percent");
+        var liveprice = {
+            "async": true,
+            "scroosDomain": true,
+            "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2CLitecoin%2CDogecoin%2Cyearn%2Cchainlink&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=bitcoin",
+
+            "method": "GET",
+            "headers": {}
+        }
+    $.ajax(liveprice).done(function (response){
+        btc.innerHTML = response.bitcoin.usd;
+        eth.innerHTML = response.ethereum.usd;
+        ltc.innerHTML = response.litecoin.usd;
+        doge.innerHTML = response.dogecoin.usd;    
+        doge.innerHTML = response.chainlink.usd;    
+    });
+
+
+    $.ajax(liveprice).done(function (response){
+        btc_percent.innerHTML = response.bitcoin.usd_24h_change.toFixed(4);
+        eth_percent.innerHTML = response.ethereum.usd_24h_change.toFixed(4);
+        ltc_percent.innerHTML = response.litecoin.usd_24h_change.toFixed(4);
+        doge_percent.innerHTML = response.dogecoin.usd_24h_change.toFixed(4); 
+        doge_percent.innerHTML = response.chainlink.usd_24h_change.toFixed(4); 
+    }); 
+
+    </script>
+</body>
+</html>
