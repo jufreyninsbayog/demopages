@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h4, p {
+    display: inline;
+    padding-right:150px;
+}​
+
+.style
+{
+}
+.background_marquee{
+    background-color: #ff1212;
+    color:white;
+    padding:10px;
+}
+
+.bg
+{
+    background: url(../images/bg_cover.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100% !important;
+}
